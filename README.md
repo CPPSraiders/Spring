@@ -1,7 +1,6 @@
 # Spring
 <p>
-This is a raider for Oasis.ps.
-But you have to configure Tor to get it work!
+This is a raider for <b>oasis.ps</b>.
 </p>
 
 <h2>News</h2>
