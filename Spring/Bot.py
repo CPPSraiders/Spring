@@ -51,16 +51,14 @@ class Bot(object):
 			parsedXT = self.xtParser.ParseRaw(self.gameSocket.Receive()[0])
 			if(parsedXT[0] == 'l'):
 				print self.Username + ' has logged into the game successfully.'
-				#self.gameSocket.Send('%xt%s%p#pgu%-1%')
-				self.gameSocket.Send('%xt%s%j#jr%-1%400%0%0%')
-				#self.gameSocket.Send('%xt%s%j#jp%27%36757%')
-				#self.gameSocket.Send('%xt%s%oasis#like%-1%25813%')
-				messages = [ 'Haha Owned!', '#BitSharpStrikes', '#Raid', '#ModRekt', 'Owned by BitSharp', 'Onions ;)', '@NULLROUT was here' ]
+				self.gameSocket.Send('%xt%s%j#jr%-1%100%0%0%')
 				while 1:
-					#self.gameSocket.Send('%xt%s%u#sp%' + str(randrange(10, 20))+ '%' + str(randrange(100, 400)) + '%' + str(randrange(100, 400)) + '%', False)
-					#self.gameSocket.Send('%xt%s%m#sm%' + str(randrange(10, 20))+ '%0%' + messages[randrange(0 , len(messages))] + '%', False)
-					#self.gameSocket.Send('%xt%s%u#sj%' + str(randrange(10, 20))+ '%' + str(randrange(1, 20)) + '%', False)
-					#self.gameSocket.Send('%xt%s%u#sb%' + str(randrange(10, 20))+ '%' + str(randrange(100, 400)) + '%' + str(randrange(100, 400)) + '%', False)
+					self.gameSocket.Send('%xt%s%u#sp%' + str(randrange(10, 20))+ '%' + str(randrange(100, 400)) + '%' + str(randrange(100, 400)) + '%', False))
+					sleep(0.5)
+					self.gameSocket.Send('%xt%s%u#sj%' + str(randrange(10, 20))+ '%' + str(randrange(1, 20)) + '%', False)
+					sleep(0.5)
+					self.gameSocket.Send('%xt%s%u#sb%' + str(randrange(10, 20))+ '%' + str(randrange(100, 400)) + '%' + str(randrange(100, 400)) + '%', False)
+					sleep(0.5)
 					self.gameSocket.Send('%xt%s%u#se%' + str(randrange(10, 20))+ '%19%', False) #' + str(randrange(1, 50))+ '
 					sleep(0.5)
 		except:
