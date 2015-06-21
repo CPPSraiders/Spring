@@ -1,4 +1,5 @@
 from Utils.torSocket    import torSocket
+from Utils.Tasks        import Tasks
 from Cryptography.Crypt import Crypt
 from Parsers.XMLParser  import XMLParser
 from Parsers.XTParser   import XTParser
@@ -22,7 +23,7 @@ class Bot(object):
 			self.loginSocket.Send('<msg t=\'sys\'><body action=\'verChk\' r=\'0\'><ver v=\'153\' /></body></msg>')
 			self.loginSocket.Send('<msg t=\'sys\'><body action=\'rndK\' r=\'-1\'></body></msg>', False)
 			randomKey = XMLParser().getAttribute(self.loginSocket.Receive()[0], "k")
-			#print '[randomKey] > ' + randomKey
+			print '[randomKey] > ' + randomKey
 			self.loginSocket.Send('<msg t=\'sys\'><body action=\'login\' r=\'0\'><login z=\'w1\'><nick><![CDATA[' + self.Username + ']]></nick><pword><![CDATA[' + Crypt().getLoginHash(self.Password, randomKey) + ']]></pword></login></body></msg>', False)
 			parsedXT = self.xtParser.ParseRaw(self.loginSocket.Receive()[0])
 			if(parsedXT[0] == 'l'):
@@ -33,7 +34,7 @@ class Bot(object):
 				self.gameHash = self.playerString.split('|')[3] + '#' + parsedXT[11]
 				self.doGame()
 			elif(parsedXT[0] == 'e'):
-				print self.Username + ' an error occured when connecting to Oasis' # crappy error handling
+				pass # not added error handling yet
 		except:
 			sleep(5)
 			self.loginSocket.newIdentity()
@@ -46,20 +47,21 @@ class Bot(object):
 			self.gameSocket.Send('<msg t=\'sys\'><body action=\'verChk\' r=\'0\'><ver v=\'153\' /></body></msg>')
 			self.gameSocket.Send('<msg t=\'sys\'><body action=\'rndK\' r=\'-1\'></body></msg>', False)
 			randomKey = XMLParser().getAttribute(self.gameSocket.Receive()[0], "k")
-			#print '[randomKey] > ' + randomKey
+			print '[randomKey] > ' + randomKey
 			self.gameSocket.Send('<msg t=\'sys\'><body action=\'login\' r=\'0\'><login z=\'w1\'><nick><![CDATA[' + self.playerString + ']]></nick><pword><![CDATA[' + self.gameHash + ']]></pword></login></body></msg>', False)
 			parsedXT = self.xtParser.ParseRaw(self.gameSocket.Receive()[0])
 			if(parsedXT[0] == 'l'):
 				print self.Username + ' has logged into the game successfully.'
-				self.gameSocket.Send('%xt%s%j#jr%-1%100%0%0%') # Loads bots at the town
+				self.tasks = Tasks(self.gameSocket)
+				self.tasks.JoinRoom('100')
 				while 1:
-					self.gameSocket.Send('%xt%s%u#sp%' + str(randrange(10, 20))+ '%' + str(randrange(100, 400)) + '%' + str(randrange(100, 400)) + '%', False)
+					self.tasks.SendPosition(randrange(100, 400), randrange(100, 400))
 					sleep(0.5)
-					self.gameSocket.Send('%xt%s%u#sj%' + str(randrange(10, 20))+ '%' + str(randrange(1, 20)) + '%', False)
+					self.tasks.SendJoke(randrange(1, 20))
 					sleep(0.5)
-					self.gameSocket.Send('%xt%s%u#sb%' + str(randrange(10, 20))+ '%' + str(randrange(100, 400)) + '%' + str(randrange(100, 400)) + '%', False)
+					self.tasks.SendSnowball(randrange(100, 400), randrange(100, 400))
 					sleep(0.5)
-					self.gameSocket.Send('%xt%s%u#se%' + str(randrange(10, 20))+ '%19%', False) #' + str(randrange(1, 50))+ '
+					self.tasks.SendEmote(randrange(1, 50))
 					sleep(0.5)
 		except:
 			self.loginSocket.newIdentity()

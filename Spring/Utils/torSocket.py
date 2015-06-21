@@ -27,7 +27,7 @@ class torSocket(object):
 		
 	def Send(self, stringPacket, shouldRecv = True, delimiter = chr(0)):
 		self.torSocket.send(stringPacket + chr(0))
-		#print '[Sent] > ' + stringPacket
+		print '[Sent] > ' + stringPacket
 		if(shouldRecv):
 			self.Receive(delimiter = delimiter)
 			
