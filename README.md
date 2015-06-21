@@ -1,6 +1,7 @@
 # Spring
 <p>
-This is a raider for <b>oasis.ps</b>.
+This is a raider for <b>oasis.ps</b>.<br>
+Just don't go around saying to made this, thanks!
 </p>
 
 <h2>News</h2>
