@@ -22,7 +22,7 @@ class Bot(object):
 			self.loginSocket.Send('<policy-file-request/>')
 			self.loginSocket.Send('<msg t=\'sys\'><body action=\'verChk\' r=\'0\'><ver v=\'153\' /></body></msg>')
 			self.loginSocket.Send('<msg t=\'sys\'><body action=\'rndK\' r=\'-1\'></body></msg>', False)
-			randomKey = XMLParser().getAttribute(self.loginSocket.Receive()[0], "k")
+			randomKey = XMLParser().getAttribute(self.loginSocket.Receive()[0], 'k')
 			print '[randomKey] > ' + randomKey
 			self.loginSocket.Send('<msg t=\'sys\'><body action=\'login\' r=\'0\'><login z=\'w1\'><nick><![CDATA[' + self.Username + ']]></nick><pword><![CDATA[' + Crypt().getLoginHash(self.Password, randomKey) + ']]></pword></login></body></msg>', False)
 			parsedXT = self.xtParser.ParseRaw(self.loginSocket.Receive()[0])
@@ -46,17 +46,17 @@ class Bot(object):
 			self.gameSocket.Send('<policy-file-request/>')
 			self.gameSocket.Send('<msg t=\'sys\'><body action=\'verChk\' r=\'0\'><ver v=\'153\' /></body></msg>')
 			self.gameSocket.Send('<msg t=\'sys\'><body action=\'rndK\' r=\'-1\'></body></msg>', False)
-			randomKey = XMLParser().getAttribute(self.gameSocket.Receive()[0], "k")
+			randomKey = XMLParser().getAttribute(self.gameSocket.Receive()[0], 'k')
 			print '[randomKey] > ' + randomKey
 			self.gameSocket.Send('<msg t=\'sys\'><body action=\'login\' r=\'0\'><login z=\'w1\'><nick><![CDATA[' + self.playerString + ']]></nick><pword><![CDATA[' + self.gameHash + ']]></pword></login></body></msg>', False)
 			parsedXT = self.xtParser.ParseRaw(self.gameSocket.Receive()[0])
 			if(parsedXT[0] == 'l'):
 				print self.Username + ' has logged into the game successfully.'
 				self.tasks = Tasks(self.gameSocket)
-				hexCodes = [  "FF0000", "00FBFF", "00FBFF", "00FBFF" , "FFFF00" , "00FF00" ,"FF00AE" ]
+				hexCodes = [  'FF0000', '00FBFF', '00FBFF', '00FBFF' , 'FFFF00' , '00FF00' ,'FF00AE' ]
 				self.tasks.JoinRoom('806')
 				while 1:
-					self.tasks.SendMessage("!rc " + hexCodes[randrange(0, len(hexCodes))])
+					self.tasks.SetParameter('rc', hexCodes[randrange(0, len(hexCodes))])
 					sleep(0.5)
 					self.tasks.SendPosition(randrange(100, 400), randrange(100, 400))
 					sleep(0.5)

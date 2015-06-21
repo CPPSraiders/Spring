@@ -3,7 +3,8 @@ class Tasks(object):
 		self.gameSocket = gameSocket
 		
 	def AddItem(self, itemId):
-		self.gameSocket.Send('%xt%s%i#ai%-1%' + str(itemId) + '%', False)		
+		self.gameSocket.Send('%xt%s%i#ai%-1%' + str(itemId) + '%', False) #
+		
 	def JoinRoom(self, roomId):
 		self.gameSocket.Send('%xt%s%j#jr%-1%' + str(roomId) + '%0%0%', False)
 		
@@ -24,6 +25,9 @@ class Tasks(object):
 		
 	def SendJoke(self, jokeId):
 		self.gameSocket.Send('%xt%s%u#sj%-1%' + str(jokeId) + '%', False)
+		
+	def SetParameter(self, parameterName, parameterValue):
+		self.gameSocket.Send('%xt%s%oasis#setpa%-1%' + parameterName + '%' + parameterValue + '%', False)
 		
 	def LikeUser(self, playerId):
 		self.gameSocket.Send('%xt%s%oasis#like%-1%' + str(playerId) + '%', False)
