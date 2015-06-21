@@ -8,6 +8,7 @@ Just don't go around saying to made this, thanks!
 <b>Change log</b>
 <ul>
 <li><b>20/05/15:</b> Released Spring!</li>
+<li><b>21/05/15:</b> Added Tasks.py</li>
 </ul>
 
 <h2>Requirements</h2>
