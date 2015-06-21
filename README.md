@@ -1,13 +1,14 @@
 # Spring
 <p>
-This is a raider for Oasis.ps.
-But you have to configure Tor to get it work!
+This is a raider for <b>oasis.ps</b>.<br>
+Just don't go around saying to made this, thanks!
 </p>
 
 <h2>News</h2>
 <b>Change log</b>
 <ul>
 <li><b>20/05/15:</b> Released Spring!</li>
+<li><b>21/05/15:</b> Added Tasks.py</li>
 </ul>
 
 <h2>Requirements</h2>
@@ -17,6 +18,7 @@ But you have to configure Tor to get it work!
 
 <h2>Screenshots:</h2>
 <br>
+<img src="http://i.imgur.com/6nt4My8.png"><br>
 <img src="http://i.imgur.com/7HzW9Qz.png"><br>
 <img src="http://i.imgur.com/am0xWcj.png"><br>
 

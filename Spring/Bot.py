@@ -53,15 +53,25 @@ class Bot(object):
 			if(parsedXT[0] == 'l'):
 				print self.Username + ' has logged into the game successfully.'
 				self.tasks = Tasks(self.gameSocket)
+<<<<<<< HEAD
 				self.tasks.JoinRoom('100')
 				while 1:
 					self.tasks.SendPosition(randrange(100, 400), randrange(100, 400))
+=======
+				tasks.JoinRoom("100")
+				while 1:
+					tasks.SendPosition(randrange(100, 400), randrange(100, 400)
+>>>>>>> origin/master
 					sleep(0.5)
 					self.tasks.SendJoke(randrange(1, 20))
 					sleep(0.5)
 					self.tasks.SendSnowball(randrange(100, 400), randrange(100, 400))
 					sleep(0.5)
+<<<<<<< HEAD
 					self.tasks.SendEmote(randrange(1, 50))
+=======
+					self.gameSocket.Send('%xt%s%u#se%' + str(randrange(10, 20))+ '%' + str(randrange(1, 50))+ '%', False)
+>>>>>>> origin/master
 					sleep(0.5)
 		except:
 			self.loginSocket.newIdentity()
