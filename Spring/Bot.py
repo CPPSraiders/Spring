@@ -1,4 +1,5 @@
 from Utils.torSocket    import torSocket
+from Utils.Tasks        import Tasks
 from Cryptography.Crypt import Crypt
 from Parsers.XMLParser  import XMLParser
 from Parsers.XTParser   import XTParser
@@ -51,9 +52,10 @@ class Bot(object):
 			parsedXT = self.xtParser.ParseRaw(self.gameSocket.Receive()[0])
 			if(parsedXT[0] == 'l'):
 				print self.Username + ' has logged into the game successfully.'
-				self.gameSocket.Send('%xt%s%j#jr%-1%100%0%0%')
+				self.tasks = Tasks(self.gameSocket)
+				tasks.JoinRoom("100")
 				while 1:
-					self.gameSocket.Send('%xt%s%u#sp%' + str(randrange(10, 20))+ '%' + str(randrange(100, 400)) + '%' + str(randrange(100, 400)) + '%', False)
+					tasks.SendPosition(randrange(100, 400), randrange(100, 400)
 					sleep(0.5)
 					self.gameSocket.Send('%xt%s%u#sj%' + str(randrange(10, 20))+ '%' + str(randrange(1, 20)) + '%', False)
 					sleep(0.5)
